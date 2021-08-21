@@ -11,20 +11,25 @@ $(function(){
     $(".close").click(function(){
     $("#popup").fadeOut();
     })
+
+
+    //이미지 슬라이드
+// let slideCount = $(".slide>li").length; 
+//만약 이걸 넣게되면 if(currentIndex<slideCount-1) 이렇게 해주면됨
+// 즉 if(currentIndex<2)에서 2의 뜻은 총 이미지개수-1개 라는 뜻.
+
+let currentIndex=0;
+// let slidePosition;
+
+setInterval(function(){
+    if(currentIndex<2){
+        currentIndex++;
+    } else {
+        currentIndex = 0;
+    }
+    let slidePosition = currentIndex * (-1200)+"px";
+
+    $(".slide").animate({left:slidePosition},400);
+},3000);
+
 });
-
-var imgs = 2;
-var now = 0;
-
-start();
-
-function start(){
-  $(".imgSlide>a").eq(0).siblings().animate({width:"-1200px"});
-
-  setInterval(function(){
-    now = now==imgs ? 0 : now+=1;
-    $(".imgSlide>a").eq(now-1).animate({width:"-1200px"});
-    $(".imgSlide>a").eq(now).animate({width:"1200px"});
-  },3000);
-}
-
